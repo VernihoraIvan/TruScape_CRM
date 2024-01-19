@@ -1,17 +1,17 @@
-import MagicButton from '@/app/components/magic-button';
-import Link from 'next/link';
-import React from 'react';
+'use client';
 
-export interface PageProps {
-  children: React.ReactNode;
+import React, { Children, useEffect } from 'react';
+import Header from '@/app/components/header';
+
+export interface LayoutProps {
+  //   children: React.ReactNode;
 }
 
-export default function Page({ children }: PageProps) {
+export default function Page({}: LayoutProps) {
   return (
-    <main>
-      <h1 className="text-xl">Dashboard Page</h1>
-      {/* <MagicButton /> */}
-      <div>{children}</div>
-    </main>
+    <>
+      <Header>Dashboard</Header>
+      {/* {children} */}
+    </>
   );
 }
