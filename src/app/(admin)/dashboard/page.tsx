@@ -1,17 +1,12 @@
-'use client';
-
 import React, { Children, useEffect } from 'react';
 import Header from '@/app/components/header';
 
-export interface LayoutProps {
-  //   children: React.ReactNode;
-}
+export interface PageProps {}
 
-export default function Page({}: LayoutProps) {
+export default function Page({}: PageProps) {
   return (
     <>
       <Header>Dashboard</Header>
-      {/* {children} */}
     </>
   );
 }
