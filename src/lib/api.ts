@@ -24,10 +24,10 @@ export interface Category {
 }
 
 export enum CompanyStatus {
-  Active = 'active',
-  NotActive = 'notActive',
-  Pending = 'pending',
-  Suspended = 'suspended',
+  Active = "active",
+  NotActive = "notActive",
+  Pending = "pending",
+  Suspended = "suspended",
 }
 
 export interface Company {
@@ -54,17 +54,21 @@ export interface Promotion {
   avatar?: string;
 }
 
-// const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
+const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
+
+// const buildUrl = (...paths: string[]) =>
+//   // `https://65a16cf9600f49256fb1a35e.mockapi.io/api/v1/${paths.join('/')}`;
+//   `https://65738713063f876cec9d07a7.mockapi.io/api/v1/${paths.join("/")}`;
 
 const buildUrl = (...paths: string[]) =>
-  // `https://65a16cf9600f49256fb1a35e.mockapi.io/api/v1/${paths.join('/')}`;
-  `https://65a16cf9600f49256fb1a35e.mockapi.io/api/v1/${paths.join('/')}`;
+  `https://${PROJECT_TOKEN}.mockapi.io/api/v1/${paths.join("/")}`;
 
 const stringifyQueryParams = (params: Record<string, string>) =>
   new URLSearchParams(params).toString();
 
 const sendRequest = async <T>(url: string, init?: RequestInit) => {
   const res = await fetch(url, init);
+  console.log(res);
   if (!res.ok) {
     throw new Error(await res.text());
   }
@@ -73,64 +77,64 @@ const sendRequest = async <T>(url: string, init?: RequestInit) => {
 };
 
 export const getSummaryStats = (init?: RequestInit) => {
-  return sendRequest<SummaryStats>(buildUrl('summary-stats', '1'), init);
+  return sendRequest<SummaryStats>(buildUrl("-stats", "1"), init);
 };
 
 export const getSummarySales = (init?: RequestInit) => {
-  return sendRequest<SummarySales[]>(buildUrl('summary-sales'), init);
+  return sendRequest<SummarySales[]>(buildUrl("summary-sales"), init);
 };
 
 export const getCountries = (init?: RequestInit) => {
-  return sendRequest<Country[]>(buildUrl('countries'), init);
+  return sendRequest<Country[]>(buildUrl("countries"), init);
 };
 
 export const getCategories = (init?: RequestInit) => {
-  return sendRequest<Category[]>(buildUrl('dashboard', 'categories'), init);
+  return sendRequest<Category[]>(buildUrl("categories"), init);
 };
 
 export const getCompanies = (init?: RequestInit) => {
-  return sendRequest<Company[]>(buildUrl('companies'), init);
+  return sendRequest<Company[]>(buildUrl("companies"), init);
 };
 
 export const getCompany = (id: string, init?: RequestInit) => {
-  return sendRequest<Company>(buildUrl('companies', id), init);
+  return sendRequest<Company>(buildUrl("companies", id), init);
 };
 
 export const getPromotions = async (
   params: Record<string, string> = {},
-  init?: RequestInit,
+  init?: RequestInit
 ) => {
   return sendRequest<Promotion[]>(
-    `${buildUrl('promotions')}?${stringifyQueryParams(params)}`,
-    init,
+    `${buildUrl("promotions")}?${stringifyQueryParams(params)}`,
+    init
   );
 };
 
 export const createCompany = async (
-  data: Omit<Company, 'id' | 'hasPromotions'>,
-  init?: RequestInit,
+  data: Omit<Company, "id" | "hasPromotions">,
+  init?: RequestInit
 ) => {
-  return sendRequest<Company>(buildUrl('companies'), {
+  return sendRequest<Company>(buildUrl("companies"), {
     ...init,
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify(data),
     headers: {
       ...(init && init.headers),
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
   });
 };
 
 export const createPromotion = async (
-  data: Omit<Promotion, 'id'>,
-  init?: RequestInit,
+  data: Omit<Promotion, "id">,
+  init?: RequestInit
 ) => {
-  return sendRequest<Promotion>(buildUrl('promotions'), {
-    method: 'POST',
+  return sendRequest<Promotion>(buildUrl("promotions"), {
+    method: "POST",
     body: JSON.stringify(data),
     headers: {
       ...(init && init.headers),
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
   });
 };
