@@ -56,10 +56,6 @@ export interface Promotion {
 
 const PROJECT_TOKEN = process.env.NEXT_PUBLIC_PROJECT_TOKEN;
 
-// const buildUrl = (...paths: string[]) =>
-//   // `https://65a16cf9600f49256fb1a35e.mockapi.io/api/v1/${paths.join('/')}`;
-//   `https://65738713063f876cec9d07a7.mockapi.io/api/v1/${paths.join("/")}`;
-
 const buildUrl = (...paths: string[]) =>
   `https://${PROJECT_TOKEN}.mockapi.io/api/v1/${paths.join("/")}`;
 
@@ -68,7 +64,6 @@ const stringifyQueryParams = (params: Record<string, string>) =>
 
 const sendRequest = async <T>(url: string, init?: RequestInit) => {
   const res = await fetch(url, init);
-  // console.log(res);
   if (!res.ok) {
     throw new Error(await res.text());
   }
