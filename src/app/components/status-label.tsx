@@ -23,7 +23,6 @@ export default function StatusLabel({
   const label = labelByStatus[status];
   if (!styled) return <>{label}</>;
 
-  console.log(status);
   return (
     <div
       className={clsx(

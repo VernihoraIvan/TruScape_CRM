@@ -8,7 +8,6 @@ export interface PageProps {
 }
 
 export default function Page({ params }: PageProps) {
-  console.log(params);
   return (
     <div className="py-6 px-10">
       <PromotionForm companyId={params.id} />
