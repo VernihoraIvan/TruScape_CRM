@@ -12,7 +12,7 @@ export default function Sidebar({}: SidebarProps) {
   const pathname = usePathname();
 
   const handleExitClick = () => {
-    router.refresh();
+    router.push('/');
   };
 
   return (

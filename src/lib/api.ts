@@ -72,7 +72,7 @@ const sendRequest = async <T>(url: string, init?: RequestInit) => {
 };
 
 export const getSummaryStats = (init?: RequestInit) => {
-  return sendRequest<SummaryStats>(buildUrl("-stats", "1"), init);
+  return sendRequest<SummaryStats>(buildUrl("summary-stats", "1"), init);
 };
 
 export const getSummarySales = (init?: RequestInit) => {

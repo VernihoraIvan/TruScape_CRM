@@ -1,9 +1,9 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import clsx from "clsx";
-import StatusLabel from "@/app/components/status-label";
-import { Company } from "@/lib/api";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import clsx from 'clsx';
+import StatusLabel from '@/app/components/status-label';
+import { Company } from '@/lib/api';
 
 export interface CompanyRowProps {
   company: Company;
@@ -26,22 +26,22 @@ export default function CompanyRow({ company }: CompanyRowProps) {
           <Image
             width={16}
             height={16}
-            src={`/icons/${company.hasPromotions ? "check" : "x-mark"}.svg`}
+            src={`/icons/${company.hasPromotions ? 'check' : 'x-mark'}.svg`}
             alt="promotion icon"
           />
           <span
             className={clsx(
-              "text-sm font-medium",
-              company.hasPromotions ? "text-green-700" : "text-red-700"
+              'text-sm font-medium',
+              company.hasPromotions ? 'text-green-700' : 'text-red-700',
             )}
           >
-            {company.hasPromotions ? "Yes" : "No"}
+            {company.hasPromotions ? 'Yes' : 'No'}
           </span>
         </div>
       </td>
       <td>{company.countryTitle}</td>
       <td className="rounded-r">
-        {new Date(company.joinedDate).toLocaleDateString("uk-UA")}
+        {new Date(company.joinedDate).toLocaleDateString('uk-UA')}
       </td>
     </tr>
   );
